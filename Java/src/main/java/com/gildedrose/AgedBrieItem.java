@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.DayThreshold;
+
 public class AgedBrieItem extends Item {
 
     public AgedBrieItem(int sellIn, int quality) {
@@ -12,7 +14,7 @@ public class AgedBrieItem extends Item {
 
         decreaseSellIn();
 
-        if (sellInLessThan(0)) {
+        if (sellInLessThan(DayThreshold.NULL_DAYS)) {
             increaseQuality();
         }
     }

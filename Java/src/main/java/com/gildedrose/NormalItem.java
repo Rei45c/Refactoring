@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.DayThreshold;
+
 public class NormalItem extends Item {
 
     public NormalItem(String name, int sellIn, int quality) {
@@ -10,7 +12,7 @@ public class NormalItem extends Item {
     public void update() {
         decreaseQuality();
         decreaseSellIn();
-        if (sellInLessThan(0)) {
+        if (sellInLessThan(DayThreshold.NULL_DAYS)) {
             decreaseQuality();
         }
     }

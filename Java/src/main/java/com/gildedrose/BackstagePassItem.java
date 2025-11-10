@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.DayThreshold;
+
 public class BackstagePassItem extends Item {
 
     public BackstagePassItem(int sellIn, int quality) {
@@ -9,12 +11,12 @@ public class BackstagePassItem extends Item {
     @Override
     public void update() {
         increaseQuality();
-        if (sellInLessThan(11)) increaseQuality();
-        if (sellInLessThan(6)) increaseQuality();
+        if (sellInLessThan(DayThreshold.ELEVEN_DAYS)) increaseQuality();
+        if (sellInLessThan(DayThreshold.SIX_DAYS)) increaseQuality();
 
         decreaseSellIn();
 
-        if (sellInLessThan(0)) {
+        if (sellInLessThan(DayThreshold.NULL_DAYS)) {
             quality = 0;
         }
     }

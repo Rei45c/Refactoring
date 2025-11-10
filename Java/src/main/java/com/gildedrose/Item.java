@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.DayThreshold;
+
 public abstract class Item {
 
     public String name;
@@ -32,8 +34,8 @@ public abstract class Item {
         sellIn--;
     }
 
-    protected boolean sellInLessThan(int days) {
-        return sellIn < days;
+    protected boolean sellInLessThan(DayThreshold threshold) {
+        return sellIn < threshold.getDays();
     }
 
     @Override
