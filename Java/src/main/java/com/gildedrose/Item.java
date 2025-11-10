@@ -32,8 +32,8 @@ public abstract class Item {
         sellIn--;
     }
 
-    protected boolean isExpired() {
-        return sellIn < 0;
+    protected boolean sellInLessThan(int days) {
+        return sellIn < days;
     }
 
     @Override

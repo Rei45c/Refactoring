@@ -10,7 +10,7 @@ public class NormalItem extends Item {
     public void update() {
         decreaseQuality();
         decreaseSellIn();
-        if (isExpired()) {
+        if (sellInLessThan(0)) {
             decreaseQuality();
         }
     }

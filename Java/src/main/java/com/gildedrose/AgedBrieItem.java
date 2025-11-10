@@ -12,7 +12,7 @@ public class AgedBrieItem extends Item {
 
         decreaseSellIn();
 
-        if (isExpired()) {
+        if (sellInLessThan(0)) {
             increaseQuality();
         }
     }
