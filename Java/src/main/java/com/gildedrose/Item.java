@@ -55,22 +55,18 @@ public class Item {
             if (sellIn < 0) {
                 quality = 0;
             }
+        } else if  (isSulfuras) {
+            // does nothing
         } else {
             if (quality > 0) {
-                if (!isSulfuras) {
-                    quality = quality - 1;
-                }
+                quality = quality - 1;
             }
 
-            if (!isSulfuras) {
-                sellIn = sellIn - 1;
-            }
+            sellIn = sellIn - 1;
 
             if (sellIn < 0) {
                 if (quality > 0) {
-                    if (!isSulfuras) {
-                        quality = quality - 1;
-                    }
+                    quality = quality - 1;
                 }
             }
         }
