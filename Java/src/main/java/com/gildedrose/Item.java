@@ -20,35 +20,27 @@ public class Item {
         boolean isSulfuras = name.equals("Sulfuras, Hand of Ragnaros");
 
         if (isAgedBrie) {
-            if (quality < 50) {
-                quality = quality + 1;
-            }
+            increaseQuality();
 
-            sellIn = sellIn - 1;
+            decreaseSellIn();
 
             if (sellIn < 0) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
+                increaseQuality();
             }
         } else if (isBackstagePass) {
             if (quality < 50) {
                 quality = quality + 1;
 
                 if (sellIn < 11) {
-                    if (quality < 50) {
-                        quality = quality + 1;
-                    }
+                    increaseQuality();
                 }
 
                 if (sellIn < 6) {
-                    if (quality < 50) {
-                        quality = quality + 1;
-                    }
+                    increaseQuality();
                 }
             }
 
-            sellIn = sellIn - 1;
+            decreaseSellIn();
 
             if (sellIn < 0) {
                 quality = 0;
@@ -56,18 +48,30 @@ public class Item {
         } else if  (isSulfuras) {
             // does nothing
         } else {
-            if (quality > 0) {
-                quality = quality - 1;
-            }
+            decreaseQuality();
 
-            sellIn = sellIn - 1;
+            decreaseSellIn();
 
             if (sellIn < 0) {
-                if (quality > 0) {
-                    quality = quality - 1;
-                }
+                decreaseQuality();
             }
         }
+    }
+
+    private void increaseQuality() {
+        if (quality < 50) {
+            quality++;
+        }
+    }
+
+    private void decreaseQuality() {
+        if (quality > 0) {
+            quality--;
+        }
+    }
+
+    private void decreaseSellIn() {
+        sellIn--;
     }
 
     @Override
