@@ -11,7 +11,7 @@ class GildedRoseTest {
         Item[] items = new Item[] { new NormalItem("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals("fixme", app.items[0].name);
+        assertEquals("fixme", app.items[0].getName());
     }
 
     @Test
@@ -21,8 +21,8 @@ class GildedRoseTest {
 
         app.updateQuality();
 
-        assertEquals(1, app.items[0].quality);
-        assertEquals(1, app.items[0].sellIn);
+        assertEquals(1, app.items[0].getState().getQuality());
+        assertEquals(1, app.items[0].getState().getSellIn());
     }
 
     @Test
@@ -36,9 +36,9 @@ class GildedRoseTest {
 
         app.updateQuality();
 
-        assertEquals(21, app.items[0].quality); // sellIn > 10
-        assertEquals(47, app.items[1].quality); // 10 >= sellIn > 5
-        assertEquals(48, app.items[2].quality); // sellIn <= 5
+        assertEquals(21, app.items[0].getState().getQuality()); // sellIn > 10
+        assertEquals(47, app.items[1].getState().getQuality()); // 10 >= sellIn > 5
+        assertEquals(48, app.items[2].getState().getQuality()); // sellIn <= 5
     }
 
     @Test
@@ -48,8 +48,8 @@ class GildedRoseTest {
 
         app.updateQuality();
 
-        assertEquals(80, app.items[0].quality);
-        assertEquals(0, app.items[0].sellIn);
+        assertEquals(80, app.items[0].getState().getQuality());
+        assertEquals(0, app.items[0].getState().getSellIn());
     }
 
 }

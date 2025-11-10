@@ -10,10 +10,10 @@ public class NormalItem extends Item {
 
     @Override
     public void update() {
-        decreaseQuality();
-        decreaseSellIn();
-        if (sellInLessThan(DayThreshold.NULL_DAYS)) {
-            decreaseQuality();
+        state.decreaseQuality();
+        state.decreaseSellIn();
+        if (state.sellInLessThan(DayThreshold.NULL_DAYS)) {
+            state.decreaseQuality();
         }
     }
 }

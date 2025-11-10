@@ -10,14 +10,14 @@ public class BackstagePassItem extends Item {
 
     @Override
     public void update() {
-        increaseQuality();
-        if (sellInLessThan(DayThreshold.ELEVEN_DAYS)) increaseQuality();
-        if (sellInLessThan(DayThreshold.SIX_DAYS)) increaseQuality();
+        state.increaseQuality();
+        if (state.sellInLessThan(DayThreshold.ELEVEN_DAYS)) state.increaseQuality();
+        if (state.sellInLessThan(DayThreshold.SIX_DAYS)) state.increaseQuality();
 
-        decreaseSellIn();
+        state.decreaseSellIn();
 
-        if (sellInLessThan(DayThreshold.NULL_DAYS)) {
-            quality = 0;
+        if (state.sellInLessThan(DayThreshold.NULL_DAYS)) {
+            state.setQualityNull();
         }
     }
 }

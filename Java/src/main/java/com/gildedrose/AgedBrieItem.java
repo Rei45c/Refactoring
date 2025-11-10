@@ -10,12 +10,12 @@ public class AgedBrieItem extends Item {
 
     @Override
     public void update() {
-        increaseQuality();
+        state.increaseQuality();
 
-        decreaseSellIn();
+        state.decreaseSellIn();
 
-        if (sellInLessThan(DayThreshold.NULL_DAYS)) {
-            increaseQuality();
+        if (state.sellInLessThan(DayThreshold.NULL_DAYS)) {
+            state.increaseQuality();
         }
     }
 }
