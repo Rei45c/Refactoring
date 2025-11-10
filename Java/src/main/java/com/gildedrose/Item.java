@@ -19,18 +19,29 @@ public class Item {
         boolean isBackstagePass = name.equals("Backstage passes to a TAFKAL80ETC concert");
         boolean isSulfuras = name.equals("Sulfuras, Hand of Ragnaros");
 
-        if (!isAgedBrie
-            && !isBackstagePass) {
-            if (quality > 0) {
-                if (!isSulfuras) {
-                    quality = quality - 1;
+        if (isAgedBrie) {
+            if (quality < 50) {
+                quality = quality + 1;
+            }
+
+            sellIn = sellIn - 1;
+
+            if (sellIn < 0) {
+                if (quality < 50) {
+                    quality = quality + 1;
                 }
             }
         } else {
-            if (quality < 50) {
-                quality = quality + 1;
+            if(!isBackstagePass) {
+                if (quality > 0) {
+                    if (!isSulfuras) {
+                        quality = quality - 1;
+                    }
+                }
+            } else {
+                if (quality < 50) {
+                    quality = quality + 1;
 
-                if (isBackstagePass) {
                     if (sellIn < 11) {
                         if (quality < 50) {
                             quality = quality + 1;
@@ -44,14 +55,12 @@ public class Item {
                     }
                 }
             }
-        }
 
-        if (!isSulfuras) {
-            sellIn = sellIn - 1;
-        }
+            if (!isSulfuras) {
+                sellIn = sellIn - 1;
+            }
 
-        if (sellIn < 0) {
-            if (!isAgedBrie) {
+            if (sellIn < 0) {
                 if (!isBackstagePass) {
                     if (quality > 0) {
                         if (!isSulfuras) {
@@ -59,11 +68,7 @@ public class Item {
                         }
                     }
                 } else {
-                    quality = quality - quality;
-                }
-            } else {
-                if (quality < 50) {
-                    quality = quality + 1;
+                    quality = 0;
                 }
             }
         }
