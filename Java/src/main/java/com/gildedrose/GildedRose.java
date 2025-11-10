@@ -8,7 +8,7 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item:items) {
+        for (Item item : items) {
             item.update();
         }
     }

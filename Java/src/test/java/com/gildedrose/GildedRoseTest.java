@@ -8,10 +8,48 @@ class GildedRoseTest {
 
     @Test
     void foo() {
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
+        Item[] items = new Item[] { new NormalItem("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("fixme", app.items[0].name);
+    }
+
+    @Test
+    void agedBrieIncreasesQuality() {
+        Item[] items = new Item[] { new AgedBrieItem(2, 0) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(1, app.items[0].quality);
+        assertEquals(1, app.items[0].sellIn);
+    }
+
+    @Test
+    void backstagePassesIncreaseAndDrop() {
+        Item[] items = new Item[] {
+            new BackstagePassItem(15, 20),
+            new BackstagePassItem(10, 45),
+            new BackstagePassItem(5, 45)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(21, app.items[0].quality); // sellIn > 10
+        assertEquals(47, app.items[1].quality); // 10 >= sellIn > 5
+        assertEquals(48, app.items[2].quality); // sellIn <= 5
+    }
+
+    @Test
+    void sulfurasNeverChanges() {
+        Item[] items = new Item[] { new SulfurasItem(0, 80) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(80, app.items[0].quality);
+        assertEquals(0, app.items[0].sellIn);
     }
 
 }

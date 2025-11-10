@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Item {
+public abstract class Item {
 
     public String name;
 
@@ -14,68 +14,30 @@ public class Item {
         this.quality = quality;
     }
 
-    public void update() {
-        boolean isAgedBrie = name.equals("Aged Brie");
-        boolean isBackstagePass = name.equals("Backstage passes to a TAFKAL80ETC concert");
-        boolean isSulfuras = name.equals("Sulfuras, Hand of Ragnaros");
+    public abstract void update();
 
-        if (isAgedBrie) {
-            increaseQuality();
-
-            decreaseSellIn();
-
-            if (sellIn < 0) {
-                increaseQuality();
-            }
-        } else if (isBackstagePass) {
-            if (quality < 50) {
-                quality = quality + 1;
-
-                if (sellIn < 11) {
-                    increaseQuality();
-                }
-
-                if (sellIn < 6) {
-                    increaseQuality();
-                }
-            }
-
-            decreaseSellIn();
-
-            if (sellIn < 0) {
-                quality = 0;
-            }
-        } else if  (isSulfuras) {
-            // does nothing
-        } else {
-            decreaseQuality();
-
-            decreaseSellIn();
-
-            if (sellIn < 0) {
-                decreaseQuality();
-            }
-        }
-    }
-
-    private void increaseQuality() {
+    protected void increaseQuality() {
         if (quality < 50) {
             quality++;
         }
     }
 
-    private void decreaseQuality() {
+    protected void decreaseQuality() {
         if (quality > 0) {
             quality--;
         }
     }
 
-    private void decreaseSellIn() {
+    protected void decreaseSellIn() {
         sellIn--;
     }
 
+    protected boolean isExpired() {
+        return sellIn < 0;
+    }
+
     @Override
-   public String toString() {
+    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 }
